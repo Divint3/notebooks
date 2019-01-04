@@ -1,0 +1,112 @@
+Java异常笔记
+Keywords 
+try catch finally throw throws
+try：把可能发生异常代码包起来，发生异常时抛出异常
+catch：捕获异常并处理
+finally：不管有无异常都会执行
+throw：手动引发一个异常
+throws：定义任何被调用方法的异常，一个方法不去处理，交给别人处理。
+Exception是所有异常的父类
+ArithmeticException：运算异常
+RuntimeExcaption:运行时异常
+
+E．g.：运算异常
+public class TryTest {
+public static void main(String[] args) {
+	try{
+		System.out.println(1/0);
+	}catch(ArithmeticException e){
+		System.out.println("运算错误");
+		e.printStackTrace();
+	}finally{
+		System.out.println("运行完毕");
+	}
+}
+}
+该例中%System.out.println(1/0);%能引发运算异常，在try中，其后面所跟代码不会执行。
+try后可跟多个catch，不可不跟catch。
+异常出现原因
+	用户输入错误
+	代码的错误
+	环境因素//内存崩溃等等
+
+	一场机制保证了程序的健壮性！
+异常分类
+Error：致命错误，内部错误，很难恢复，用户无法处理
+Exception：异常
+Throwable
+				Error							Exception
+										RuntimeExcaption:运行时异常
+									非RuntimeExcaption：环境因素导致
+E.g.:类型转换异常
+public class ClassCastExcaption {
+public static void main(String[] args) {
+	People p1=new Student();
+	Student s1=(Student)p1;
+	Teacher t1=(Teacher)p1;
+	}
+}
+class People{
+	
+}
+class Student extends People{
+	
+}
+class Teacher extends People{
+	
+}
+Exception in thread "main" java.lang.ClassCastException: com.java1995.Student cannot be cast to com.java1995.Teacher
+无法把Sudent类型铸造(转换)为Teacher类型，该异常为类型转换异常。
+E．g.:空指针异常
+public class ClassCastExcaption {
+public static void main(String[] args) {
+	People p1=new Student();
+	Student s1=(Student)p1;
+	s1=null;
+	s1.run();
+	}
+}
+class People{
+	
+}
+class Student extends People{
+	public void run(){
+		System.out.println("跑");
+	}
+}
+class Teacher extends People{
+	
+}
+Exception in thread "main" java.lang.NullPointerException
+
+变量为null无法调用方法，该异常类型为空指针异常。
+E.g.:数组越界异常
+public static void main(String[] args) {
+	int[] arr=new int[]{1,2,3};
+	int temp=arr[5];
+	}
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+arr数组只有三个元素，而赋值语句要第六个元素，可见数组越界异常。
+异常声明
+只一个方法不处理它所产生的异常，而是调用层次向上传递，谁调用该方法，谁来处理。
+E.g.:
+public class ThrowsTest {
+public static void main(String[] args) {
+	ThrowsTest t=new ThrowsTest ();
+	t.test1();
+	}
+public void test1() throws ArithmeticException{
+	System.out.println(1/0);
+	}
+}
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+这是一个典型的算术异常，可以看出main方法中t.test1()调用了带有异常的方法，所以根据定义就要使调用该方法的类处理该异常，也就是要使t.test1语句被try｛｝语句包住，防止虚拟机处理该异常，使程序死掉。
+手动抛出异常
+throw exception;exception表示要抛出的异常对象，该对象是throable类的子类，而且只能抛出一个异常，需要被try{}包住。
+异常的嵌套
+e.initCause(e1);
+throw e;
+是指e1是发生e异常的原因。
+创建自己的异常
+异常类要么继承Throwable，要么继承Exception。
+super()是指使用父类的构造方法。

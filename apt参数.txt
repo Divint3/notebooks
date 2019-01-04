@@ -1,0 +1,150 @@
+purge参数彻底删除文件 sudo apt-get purge virtualbox 
+
+                      sudo apt-get autoremove 
+
+                      sudo apt-get clean 
+
+
+清除所有已删除包的残余配置文件配置文件 dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P  执行之后删除了很多配置文件 
+
+看来apt-get remove只是删除了软件的链接，并没有实际删除软件的配置文件和实体文件，时间长了难免积攒许多僵尸文件。 
+
+以下附上apt的一些常用方法： 
+
+下面的命令大都需要在 控制台 / 终端 / shell 下输入。 
+
+控制台, 终端, 和 shell 意味着同样一件事 - 一个命令行界面， 他可以用来控制系统。 
+
+打开一个控制台: 
+
+应用程序 --> 附件 --> 终端 
+
+任何一个使用 'sudo' 作为前缀的命令都需要拥有管理员 (或 root) 访问权限。 所以你会被提示输入你自己的密码。 
+
+安装升级 
+查看软件xxx安装内容 
+
+dpkg -L xxx 
+
+查找软件库中的软件 
+
+apt-cache search 正则表达式 
+或 
+aptitude search 软件包 
+
+显示系统安装包的统计信息 
+
+apt-cache stats 
+
+显示系统全部可用包的名称 
+
+apt-cache pkgnames 
+
+显示包的信息 
+
+apt-cache show k3b 
+
+查找文件属于哪个包 
+
+apt-file search filename 
+
+查看已经安装了哪些包 
+
+dpkg -l 
+
+查询软件xxx依赖哪些包 
+
+apt-cache depends xxx 
+
+查询软件xxx被哪些包依赖 
+
+apt-cache rdepends xxx 
+
+增加一个光盘源 
+
+sudo apt-cdrom add 
+
+系统升级 
+
+sudo apt-get update (这一步更新包列表) 
+
+sudo apt-get dist-upgrade (这一步安装所有可用更新) 
+或者 
+sudo apt-get upgrade (这一步安装应用程序更新，不安装新内核等) 
+
+清除所有已删除包的残馀配置文件 
+
+dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P 
+
+如果报如下错误，证明你的系统中没有残留配置文件了，无须担心。 
+
+dpkg: --purge needs at least one package name argument 
+
+Type dpkg --help for help about installing and deinstalling packages
+;
+Use `dselect' or `aptitude' for user-friendly package management; 
+Type dpkg -Dhelp for a list of dpkg debug flag values; 
+Type dpkg --force-help for a list of forcing options; 
+Type dpkg-deb --help for help about manipulating *.deb files; 
+Type dpkg --license for copyright license and lack of warranty (GNU GPL)
+.
+
+Options marked
+produce a lot of output - pipe it through `less' or `more' !
+
+编译时缺少h文件的自动处理 
+
+sudo auto-apt run ./configure 
+
+查看安装软件时下载包的临时存放目录 
+
+ls /var/cache/apt/archives 
+
+备份当前系统安装的所有包的列表 
+
+dpkg --get-selections | grep -v deinstall > ~/somefile 
+
+从上面备份的安装包的列表文件恢复所有包 
+
+dpkg --set-selections < ~/somefile 
+sudo dselect 
+
+清理旧版本的软件缓存 
+
+sudo apt-get autoclean 
+
+清理所有软件缓存 
+
+sudo apt-get clean 
+
+删除系统不再使用的孤立软件 
+
+sudo apt-get autoremove 
+
+查看包在服务器上面的地址 
+
+apt-get -qq --print-uris install ssh | cut -d\' -f2 
+
+彻底删除Gnome 
+
+apt-get --purge remove liborbit2 
+
+彻底删除KDE 
+
+apt-get --purge remove libqt3-mt libqtcore4 
+
+一键安装 LAMP 服务 
+sudo tasksel install lamp-server 
+删除旧内核 
+
+sudo aptitude purge ~ilinux-image-.*\(\!`uname -r`\) 
+
+导入ppa源的key值 
+
+#W: GPG签名验证错误： http://ppa.launchpad.net jaunty Release: 由于没有公钥，下列签名无法进行验证： NO_PUBKEY 5126890CDCC7AFE0 
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 5126890CDCC7AFE0 #5126890CDCC7AFE0替换为你需要导入的Key值 
+
+增加一个ppa源 
+
+sudo add-apt-repository ppa:user/ppa-name  
+#使用 ppa 的地址替换 ppa:user/ppa-name

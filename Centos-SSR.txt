@@ -1,0 +1,31 @@
+搭建ssr服务器
+首先
+安装wget
+yum install wget
+更新系统到最新
+yum install epel-release -y 
+yum update -y
+安装gurb引导
+yum install grub -y
+更换内核
+wget --no-check-certificate https://blog.asuhu.com/sh/ruisu.sh
+bash ruisu.sh
+安装锐速
+wget --no-check-certificate -O appex.sh https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh && chmod +x appex.sh && bash appex.sh install
+安装ssr(py版)
+(如果提示没有ifconfig命令[在Centos 7 最小化系统会有这种情况] 输入命令
+yum install net-tools
+如果想找到ifconfig在什么包里
+yum provides ***
+yum whatprovides ***)
+wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh && chmod +x shadowsocksR.sh && bash shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+根据提示输入就好
+
+启动：/etc/init.d/shadowsocks start
+停止：/etc/init.d/shadowsocks stop
+重启：/etc/init.d/shadowsocks restart
+状态：/etc/init.d/shadowsocks status
+
+配置文件路径：/etc/shadowsocks.json
+日志文件路径：/var/log/shadowsocks.log
+代码安装目录：/usr/local/shadowsocks

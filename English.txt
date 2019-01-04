@@ -1,0 +1,34 @@
+prune	
+	vi.	删除; 减少;
+purge	
+	vt.	肃清; 清除，（使）净化; （使） 通便;
+meta	元数据标记
+name	元数据名
+content	内容
+charset 字符集
+broder	边界
+decoration	装饰
+align	排列
+	margin	边缘
+	padding	衬垫
+	width	宽度 
+	height	高度
+tr		行
+td		列
+border 	边界
+href	是Hypertext Reference的缩写。意思是指定超链接目标的URL
+clospan	跨行
+rowspan	跨列
+global	引入全局变量
+statement	声明
+value	值
+globals	全局变量
+declare	声明
+PHP_EOL	换行
+action	发送表单数据
+gender	单选
+reload 	重载
+overwrite	覆写
+bottom	底部
+yantax	语法错误
+Undefined variable	未定义变量

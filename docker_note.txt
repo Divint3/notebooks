@@ -1,0 +1,76 @@
+﻿docker	note
+只读层----------镜像
+	可读可写层--------------容器
+为了方便数据共享 所以形成了镜像与容器的概念
+即使你修改了docker中的文件,被修改的也只是可读可写层-------------容器内的东西
+只读层---------镜像 不会发生任何改变
+所以可以镜像复用 
+当exit结束docker中的交互式shell后,可读可写层------容器的内容仍会保留(可以指定docker -rm 指定镜像启动的容器 来删除可读可写层-----容器内的修改)
+
+由于 union fs结构	使镜象中的层可以像动态链接库一样继承,复用
+
+
+========================================================================================================================
+拉取镜像	pull
+$ docker pull ubuntu:16.04
+运行镜像	run
+$ docker run -it --rm ubuntu:16.04 bash
+$ docker run --name webserver -d -p 80:80 nginx
+	相关参数:
+		--rm:这个参数是说容器退出后随之将其删除
+		-i:	交互式操作
+		-t:	终端
+		bash:所运行的命令
+列出镜像	image ls
+$ docker image ls
+删除虚悬镜像	image prune
+$ docker image prune
+中间层镜像	image ls -a
+$ docker image ls -a
+	方便镜像像动态链接库文件一样调用,解决依赖问题
+过滤器		--filter
+删除本地镜像	image rm
+$ docker image rm [选项] <镜像1> 
+$ docker image rm 501(根据id删除镜像文件,一般取前三位)
+进入容器	exec
+$ docker exec -it webserver bash
+容器创建命令 commit
+docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
+	我们可以用下面的命令将容器保存为镜像：
+
+	$ docker commit \
+		--author "Tao Wang <twang2218@gmail.com>" \
+		--message "修改了默认网页" \
+		webserver \
+		nginx:v2
+	sha256:07e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214
+Dockerfile
+	命令:
+		RUN	执行命令
+		COPY 复制文件
+		FROM 指定基础镜像
+		ADD 更高级的复制文件
+		CMD 容器启动命令
+		ENTRYPOINT 入口点
+		ENV 设置环境变量
+		ARG 构建参数
+		VOLUME 定义匿名卷
+		EXPOSE 声明端口
+		WORKDIR 指定工作目录
+		USER 指定当前用户
+		HEALTHCHECK 健康检查
+	首先写出一个Dockerfile
+
+
+	$ docker build -t 镜像名:标签 .(点代表当前目录,由于docker上传Dockermakefile到服务端,形成了上下文概念,所以要使用相对路径,不可以使用绝对路径,因为绝对路径会超出上下文的管理范围)
+	cat Dockerfile | docker build -
+	##如果标准输入传入的是文本文件，则将其视为 Dockerfile，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 COPY 进镜像之类的事情
+	
+	COPY 指令将从构建上下文目录中 <源路径> 的文件/目录复制到新的一层的镜像内的 <目标路径> 位置。比如：
+	COPY package.json /usr/src/app/##上下文路径中,只能使用相对路径,因为会上传当前目录所有文件到上下文目录中,所以只能当前目录的相对路径,指定其他路径超出上下文目录管理范围
+	
+
+中文乱码
+	dpkg local
+	setfacl
+

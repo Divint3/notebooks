@@ -1,0 +1,28 @@
+Metasploit
+Exploit 渗透攻击
+Payload 攻击荷载
+Shellcode 攻击代码
+Module 模块
+Listener 监听器
+msfconsole MSF终端
+msfcli MSF命令行
+msfencode MSF编码器
+msfpayload MSF荷载生成器
+whois 查询工具
+nslookup 解析域名查询
+Netcraft 承载ip查询
+service postgresql start 数据库服务启动
+db_connect postgres:toor@127.0.0.1/msfbook 数据库连接
+db_import *.xml 导入nmap扫描信息
+db_hosts 查看数据库主机信息
+db_services 查看扫描中关于服务的扫描结果
+db_destory 删除现有数据库
+msfmodule
+scanner/ip/ipdseq 空闲扫描主机查找
+scanner/smb/smb_version smb版本扫描
+scanner/mssql/mssql_ping mssql错误配置扫描
+scanner/ssh/ssh_version ssh版本扫描
+scanner/ftp/ftp_version ftp扫描
+scanner/ftp/anonymous ftp匿名登陆检查
+scanner/snmp/snmp_login 猜解snmp团体字符串
+

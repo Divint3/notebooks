@@ -1,0 +1,18 @@
+Java线程笔记
+继承Thread类创建线程
+class 类名 extends Thread{
+	public void run(){
+	//代码
+}
+}
+
+new出一个对象可以用对象.start()实现多线程。
+new 类名=new 构造方法();
+继承Runnable接口创建线程
+class 类名 implements Runnable｛
+	public run(){
+		//代码
+}
+}
+Thread t=new Thread(类名);
+Thread t1=new Thread(类名,”线程名定义”)

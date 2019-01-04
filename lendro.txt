@@ -1,0 +1,3 @@
+Arduino lendro板驱动
+https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
+http://wechat.doit.am/package_esp8266com_index.json

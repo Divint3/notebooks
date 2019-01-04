@@ -1,0 +1,17 @@
+note
+
+echo "ajshdjkahsdjklahdjk" >/dev/null 1>&2		//没有意义
+echo "ajshdjkahsdjklahdjk" >/dev/null 2>&1		//错误输出重定向到标准输出流中,而标准输出流重定向到了/dev/null的黑洞中,所以,无论错误输出,标准输出,都会消失
+echo "ajshdjkahsdjklahdjk" 2>/dev/null 1>&2		//思路等同于第二条
+echo "ajshdjkahsdjklahdjk" 2>&1 >/dev/null 		//意思就是把错误输出2重定向到标准出1，标准输出进了“黑洞”，也就是标准输出进了黑洞，错误输出打印到屏幕		
+
+
+find /etc -name .bashrc > list 2>&1
+	顺序不可调换
+find /etc -name .bashrc 2>&1 > list
+
+xxx > list 2>&1
+先将要输出到stdout的内容重定向到文件，此时文件list就是这个程序的stdout，再将stderr重定向到stdout，也就是文件list
+
+xxx 2>&1 > list
+先将要输出到stderr的内容重定向到stdout，此时会产生一个stdout的拷贝，作为程序的stderr，而程序原本要输出到stdout的内容，依然是对接在stdout原身上的，因此第二步重定向stdout，对stdout的拷贝不产生任何影响

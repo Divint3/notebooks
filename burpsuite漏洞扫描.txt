@@ -1,0 +1,10 @@
+怎么用Burp Suite为整个网站扫描漏洞
+设置Proxy LIsteners监听端口
+打开浏览器设置代理
+通过Intercept抓取get数据
+在窗口上右键，单机send to Spider
+再单击Intercept is on按钮变为Intercept is off停止抓取数据
+单机Target->Site map找到黑色高亮字体，也就是你所爬取的网站，在上面右键单击选择Actively scan this host
+选择排除项，一般排除图像等文件，就是最后一个复选框，单击Next->OK->Yes.
+扫描开始。
+漏洞提示在Target->Site map->Issues下有提示，单机漏洞会在Advisory下有漏洞详情。

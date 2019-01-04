@@ -1,0 +1,63 @@
+﻿php知识点
+使元素居中 左右auto 上下为0
+ div{
+    width:200px;
+    margin:0 auto;
+  }
+清除浮动影响:
+clear:both
+overfloat:hidden
+php中"."作为连接符,类似于java中的"+"
+$age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");//前面是键,后面是值
+<?php 
+$age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43"); 
+
+foreach($age as $x=>$x_value) 
+{ 
+echo "Key=" . $x . ", Value=" . $x_value; 
+echo "<br>"; 
+} 
+?>
+//遍历关联数组
+
+foreach($数组名 as $变量名){
+	//会打印数组中的所有值
+
+}
+globals
+键 索引 值
+键:文本,只有关联数组才有
+索引:从零开始门
+值:所有数组都会有值
+增删改查:
+unset
+<script type="text/javascript">
+var s = ""; 
+s += " 网页可见区域宽："+ document.body.clientWidth+"<br />"; 
+s += " 网页可见区域高："+ document.body.clientHeight+"<br />"; 
+s += " 网页可见区域宽："+ document.body.offsetWidth + " (包括边线和滚动条的宽)"+"<br />"; 
+s += " 网页可见区域高："+ document.body.offsetHeight + " (包括边线的宽)"+"<br />"; 
+s += " 网页正文全文宽："+ document.body.scrollWidth+"<br />"; 
+s += " 网页正文全文高："+ document.body.scrollHeight+"<br />"; 
+s += " 网页被卷去的高(ff)："+ document.body.scrollTop+"<br />"; 
+s += " 网页被卷去的高(ie)："+ document.documentElement.scrollTop+"<br />"; 
+s += " 网页被卷去的左："+ document.body.scrollLeft+"<br />"; 
+s += " 网页正文部分上："+ window.screenTop+"<br />"; 
+s += " 网页正文部分左："+ window.screenLeft+"<br />"; 
+s += " 屏幕分辨率的高："+ window.screen.height+"<br />"; 
+s += " 屏幕分辨率的宽："+ window.screen.width+"<br />"; 
+s += " 屏幕可用工作区高度："+ window.screen.availHeight+"<br />"; 
+s += " 屏幕可用工作区宽度："+ window.screen.availWidth+"<br />"; 
+s += " 你的屏幕设置是 "+ window.screen.colorDepth +" 位彩色"+"<br />"; 
+s += " 你的屏幕设置 "+ window.screen.deviceXDPI +" 像素/英寸"+"<br />"; 
+
+document.getElementById("div_html").innerHTML = s;
+</script>
+
+使图片填满整个屏幕
+	style="background-size:cover;"
+php方法定义
+	function 方法名(形式参数){
+
+		方法体;
+	}
