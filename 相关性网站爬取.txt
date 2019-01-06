@@ -1,0 +1,15 @@
+cewl
+附cewl常用参数释义：
+--help, -h: 显示帮助
+--keep, -k: 保存下载的文件
+--depth x, -d x:网站爬取深度，默认为2，建议不要太大
+--min_word_length, -m: 字典的最小单词长度，如果小于此不收入字典
+--offsite, -o: 让爬虫爬取其他站点，针对外链的
+--write, -w file: 爬取的内容输出到文件
+--ua, -u user-agent: 使用useragent，防止有些网站对于爬虫进行防御
+--no-words, -n: 不要输出字典
+--meta, -a 包含网页中的meta数据
+--meta_file file: 为meta数据输出个文件
+--email, -e:包含email地址
+--email_file file: 输出email地址
+--count, -c: 展示发现的每个单词的数量

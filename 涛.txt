@@ -1,0 +1,84 @@
+ulimit -s
+全局变量 :.data or
+未初始化的全局变量 :.bss rw
+全局静态变量: static 当前源文件可见,其他文件不可调用 .data
+局部变量: .stack,就在栈里
+sub esp,4(开辟一个四字节的内存空间,栈)
+静态局部变量: 作用域在函数内,存在周期在整个程序.data
+
+
+
+
+
+
+__stdcall编译体积小
+
+__stdcall 被调用函数还原栈 
+
+
+__cdcall 调用函数还原栈
+
+
+
+__fastcall 加快函数执行速度
+
+
+
+
+
+zf真假 cf进位 of溢出
+cmp 比较 常结合jmp
+
+test 与运算eax ==0 zf=1 else zf =0
+push入栈  pop出栈
+
+
+idiv 
+and
+or 
+xor
+
+
+调用者 被调用者
+
+amazeui
+
+filehanders
+opintionhanders
+
+
+
+dos头
+	pe文件头
+		cff explover:查看pe文件头工具
+		pe头偏移量:
+		资源表:
+		导入表:
+		de5a用于区分pe文件
+		nthanders
+			大端模式:50450000
+			数据目录表
+			可选头
+			基址重定向
+			物理属性
+			opinition属性
+			逻辑属性
+			内存对齐:1000
+			硬盘对齐:200
+			va:虚拟内存地址
+			rva:相对虚拟内存地址
+			va-基址=rva
+			frav:文件相对地址
+			idata
+			rdata
+			data
+			bss
+			text
+			imagebase:基址=400000
+
+			VOFFSET:开始地址与基址的偏移量:内存块大小	1000
+			ROFFSET:起始位置对文件偏移量:磁盘块大小			200
+			
+			
+			基址400000
+			VOFFSET 0X404141

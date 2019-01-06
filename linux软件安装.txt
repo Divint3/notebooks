@@ -1,0 +1,9 @@
+linux软件安装
+Vscode
+Eclipse
+Arduino
+Jdk8
+Telegram 
+Ssr
+Pip
+Chrome
